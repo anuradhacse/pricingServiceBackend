@@ -1,13 +1,13 @@
 package com.products.calculator.service.impl;
 
+import com.products.calculator.common.enumeration.QuantityType;
 import com.products.calculator.dao.ProductDao;
 import com.products.calculator.dto.ProductPriceResponseDTO;
 import com.products.calculator.entity.Product;
 import com.products.calculator.service.ProductPricingService;
+import com.products.calculator.util.PricingEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
 
 @Service
 public class ProductPricingServiceImpl implements ProductPricingService {
@@ -20,11 +20,13 @@ public class ProductPricingServiceImpl implements ProductPricingService {
         //get product details by product id
         Product product = productDao.getProductByProductId(productId);
         //calculate price
+        var price = PricingEngine.calculatePrice(product, units, QuantityType.UNIT);
+
         ProductPriceResponseDTO productPriceDTO = new ProductPriceResponseDTO();
         productPriceDTO.setProductId(productId);
         productPriceDTO.setName(product.getName());
         productPriceDTO.setUnits(units);
-        productPriceDTO.setPrice(new BigDecimal(100));
+        productPriceDTO.setPrice(price);
 
         return productPriceDTO;
     }
