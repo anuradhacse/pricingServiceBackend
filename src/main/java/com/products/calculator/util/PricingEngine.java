@@ -42,15 +42,15 @@ public class PricingEngine {
                         .multiply(BigDecimal.valueOf(cartons))
                         .add(product.getCartonPrice()
                                 .multiply(BigDecimal.valueOf(1.3))
-                                .multiply(BigDecimal.valueOf(singleUnits)))
-                                .divide(BigDecimal.valueOf(product.getUnitsPerCarton()))
+                                .multiply(BigDecimal.valueOf(singleUnits))
+                                .divide(BigDecimal.valueOf(product.getUnitsPerCarton())))
                                 .setScale(3, RoundingMode.HALF_EVEN);
             }
             return product.getCartonPrice().multiply(BigDecimal.valueOf(cartons))
                     .add(product.getCartonPrice()
                             .multiply(UNIT_PURCHASE_ADDITIONAL_CHARGE)
-                            .multiply(BigDecimal.valueOf(singleUnits)))
-                            .divide(BigDecimal.valueOf(product.getUnitsPerCarton()))
+                            .multiply(BigDecimal.valueOf(singleUnits))
+                            .divide(BigDecimal.valueOf(product.getUnitsPerCarton())))
                             .setScale(3, RoundingMode.HALF_EVEN);
         }
     }
