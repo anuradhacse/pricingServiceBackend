@@ -2,6 +2,7 @@ package com.products.calculator.service.impl;
 
 import com.products.calculator.common.enumeration.QuantityType;
 import com.products.calculator.dao.ProductDao;
+import com.products.calculator.dto.ProductPriceRequestDTO;
 import com.products.calculator.dto.ProductPriceResponseDTO;
 import com.products.calculator.entity.Product;
 import com.products.calculator.service.ProductPricingService;
@@ -16,25 +17,18 @@ public class ProductPricingServiceImpl implements ProductPricingService {
     private ProductDao productDao;
 
     @Override
-    public ProductPriceResponseDTO calculatePriceByUnits(String productId, int units) {
+    public ProductPriceResponseDTO calculatePriceByUnits(ProductPriceRequestDTO request) {
         //get product details by product id
-        Product product = productDao.getProductByProductId(productId);
+        Product product = productDao.getProductByProductId(request.getProductId());
         //calculate price
-        var price = PricingEngine.calculatePrice(product, units, QuantityType.UNIT);
+        var price = PricingEngine.calculatePrice(product, request.getQuantity(), request.getQuantityType());
 
         ProductPriceResponseDTO productPriceDTO = new ProductPriceResponseDTO();
-        productPriceDTO.setProductId(productId);
+        productPriceDTO.setProductId(product.getId());
         productPriceDTO.setName(product.getName());
-        productPriceDTO.setUnits(units);
+        productPriceDTO.setUnits(request.getQuantity());
         productPriceDTO.setPrice(price);
 
         return productPriceDTO;
-    }
-
-    @Override
-    public ProductPriceResponseDTO calculatePriceByCartons(String productId, int cartons) {
-        //convert cartons to units
-        //call calculating by units service
-        return null;
     }
 }
