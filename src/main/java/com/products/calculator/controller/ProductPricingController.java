@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/products/pricing")
 public class ProductPricingController {
@@ -16,13 +18,13 @@ public class ProductPricingController {
     @Autowired
     private ProductPricingService productPricingService;
 
-    @GetMapping("/calculate/units")
+    @GetMapping("/calculate")
     public ProductPriceResponseDTO calculateByUnits(@RequestBody ProductPriceRequestDTO request){
-        return productPricingService.calculatePriceByUnits(request.getProductId(), request.getQuantity());
+        return productPricingService.calculatePriceByUnits(request);
     }
 
-    @GetMapping("/calculate/cartons")
-    public ProductPriceResponseDTO calculateByCartons(@RequestBody ProductPriceRequestDTO request){
-        return productPricingService.calculatePriceByCartons(request.getProductId(), request.getQuantity());
+    @GetMapping("/list")
+    public List<ProductPriceResponseDTO> getProductPriceList(){
+        return List.of();
     }
 }
