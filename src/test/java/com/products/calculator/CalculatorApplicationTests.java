@@ -24,6 +24,9 @@ class CalculatorApplicationTests {
 
 		var response = productPricingService.calculatePriceByUnits(request);
 		Assertions.assertEquals(BigDecimal.valueOf(175).setScale(3), response.getPrice());
+		Assertions.assertEquals("1", response.getProductId());
+		Assertions.assertEquals("Penguin-ears", response.getName());
+		Assertions.assertEquals(1, response.getUnits());
 
 		request.setQuantity(2);
 		response = productPricingService.calculatePriceByUnits(request);
@@ -42,6 +45,9 @@ class CalculatorApplicationTests {
 
 		response = productPricingService.calculatePriceByUnits(request);
 		Assertions.assertEquals(BigDecimal.valueOf(825).setScale(3), response.getPrice());
+		Assertions.assertEquals("2", response.getProductId());
+		Assertions.assertEquals("Horseshoe", response.getName());
+		Assertions.assertEquals(1, response.getUnits());
 
 		request.setQuantity(2);
 		response = productPricingService.calculatePriceByUnits(request);
