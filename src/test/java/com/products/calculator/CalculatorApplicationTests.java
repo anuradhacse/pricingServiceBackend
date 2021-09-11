@@ -2,7 +2,6 @@ package com.products.calculator;
 
 import com.products.calculator.common.enumeration.QuantityType;
 import com.products.calculator.dto.ProductPriceRequestDTO;
-import com.products.calculator.dto.ProductPriceResponseDTO;
 import com.products.calculator.service.ProductPricingService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
