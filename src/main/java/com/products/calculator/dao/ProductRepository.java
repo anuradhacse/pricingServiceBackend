@@ -23,4 +23,8 @@ public class ProductRepository {
         }
         throw new ProductServiceException("Cannot find the product with the given ID - " + productId);
     }
+
+    public List<Product> getAllProducts(){
+        return productList;
+    }
 }

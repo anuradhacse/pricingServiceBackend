@@ -1,9 +1,19 @@
 package com.products.calculator.dto;
 
+import com.products.calculator.entity.Product;
+
 public class ProductDTO {
 
     private String id;
     private String name;
+
+    public ProductDTO(){
+
+    }
+    public ProductDTO(Product product){
+        this.id = product.getId();
+        this.name = product.getName();
+    }
 
     public String getId() {
         return id;
