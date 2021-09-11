@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,8 +21,8 @@ public class ProductPricingController {
     @Autowired
     private ProductPricingService productPricingService;
 
-    @GetMapping("/calculate")
-    public ProductPriceResponseDTO calculateByUnits(@RequestBody ProductPriceRequestDTO request){
+    @PostMapping("/calculate")
+    public ProductPriceResponseDTO calculateByUnits(@Valid @RequestBody ProductPriceRequestDTO request){
         log.info("Request received to calculate price for : product {}, quantity {}, quantityType {}",
                 request.getProductId(), request.getQuantity(), request.getQuantityType());
         return productPricingService.calculatePriceByUnits(request);

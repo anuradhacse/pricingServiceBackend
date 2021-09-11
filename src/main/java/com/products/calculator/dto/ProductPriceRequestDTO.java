@@ -1,9 +1,11 @@
 package com.products.calculator.dto;
 
 import com.products.calculator.common.enumeration.QuantityType;
+import javax.validation.constraints.NotBlank;
 
 public class ProductPriceRequestDTO {
 
+    @NotBlank(message = "product id is required")
     private String productId;
     private Integer quantity;
     private QuantityType quantityType;
