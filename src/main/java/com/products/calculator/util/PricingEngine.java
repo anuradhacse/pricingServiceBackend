@@ -24,7 +24,14 @@ public class PricingEngine {
      */
     public static BigDecimal calculatePrice(Product product, Integer requestedQuantity, QuantityType quantityType) {
         if (quantityType.equals(QuantityType.CARTON)) {
-            return product.getCartonPrice().multiply(BigDecimal.valueOf(requestedQuantity));
+            return requestedQuantity >= 3 ?
+                    product.getCartonPrice()
+                            .multiply(CARTON_COUNT_DISCOUNT_AMOUNT)
+                            .multiply(BigDecimal.valueOf(requestedQuantity))
+                            .setScale(3, RoundingMode.HALF_EVEN):
+                            product.getCartonPrice()
+                            .multiply(BigDecimal.valueOf(requestedQuantity))
+                            .setScale(3, RoundingMode.HALF_EVEN);
         } else {
             var numberOfCartonsAndSingleUnits = getNumberOfCartonsAndSingleUnits(product, requestedQuantity);
             var cartons = numberOfCartonsAndSingleUnits.getLeft();
@@ -37,14 +44,14 @@ public class PricingEngine {
                                 .multiply(BigDecimal.valueOf(1.3))
                                 .multiply(BigDecimal.valueOf(singleUnits)))
                                 .divide(BigDecimal.valueOf(product.getUnitsPerCarton()))
-                                .setScale(3, RoundingMode.HALF_UP);
+                                .setScale(3, RoundingMode.HALF_EVEN);
             }
             return product.getCartonPrice().multiply(BigDecimal.valueOf(cartons))
                     .add(product.getCartonPrice()
                             .multiply(UNIT_PURCHASE_ADDITIONAL_CHARGE)
                             .multiply(BigDecimal.valueOf(singleUnits)))
                             .divide(BigDecimal.valueOf(product.getUnitsPerCarton()))
-                            .setScale(3, RoundingMode.HALF_UP);
+                            .setScale(3, RoundingMode.HALF_EVEN);
         }
     }
 
