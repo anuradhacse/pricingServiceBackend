@@ -2,7 +2,14 @@ package com.products.calculator.dto;
 
 import com.products.calculator.entity.Product;
 
-public class ProductDTO {
+import java.io.Serializable;
+
+/**
+ * API bean for representing a product entity
+ */
+public class ProductDTO implements Serializable {
+
+    private static final long serialVersionUID = -789080277939731604L;
 
     private String id;
     private String name;

@@ -17,6 +17,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Central point to receive exceptions and throw proper error messages
+ */
 @ControllerAdvice
 public class ErrorHandlingControllerAdvice extends ResponseEntityExceptionHandler {
 

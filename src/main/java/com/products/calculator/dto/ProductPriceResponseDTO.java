@@ -1,8 +1,14 @@
 package com.products.calculator.dto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class ProductPriceResponseDTO {
+/**
+ * API bean for representing Product price response
+ */
+public class ProductPriceResponseDTO implements Serializable {
+
+    private static final long serialVersionUID = -5968705440168269735L;
 
     private String productId;
     private String name;

@@ -23,6 +23,11 @@ public class ProductPricingService {
     @Autowired
     private ProductRepository productDao;
 
+    /**
+     * API for calculating price for given product
+     * @param request @{@link ProductPriceRequestDTO}
+     * @return Calculated price
+     */
     public ProductPriceResponseDTO calculatePriceByUnits(ProductPriceRequestDTO request) {
         log.info("Started calculating price for : product {}, quantity {}, quantityType {}",
                 request.getProductId(), request.getQuantity(), request.getQuantityType());
@@ -40,6 +45,10 @@ public class ProductPricingService {
         return productPriceDTO;
     }
 
+    /**
+     * Provide price list of two products 1-50 units
+     * @return
+     */
     public List<ProductPriceResponseDTO> getProductPriceList(){
         log.info("Started generating product price list");
 

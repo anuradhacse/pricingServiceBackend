@@ -14,6 +14,10 @@ public class ProductService {
     @Autowired
     private ProductRepository ProductRepository;
 
+    /**
+     * Provide all products
+     * @return
+     */
     public List<ProductDTO> getAllProducts() {
         return ProductRepository.getAllProducts()
                 .stream()
