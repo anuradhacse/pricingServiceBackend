@@ -1,4 +1,4 @@
-package com.products.calculator;
+package com.products.calculator.service;
 
 import com.products.calculator.common.enumeration.QuantityType;
 import com.products.calculator.dto.ProductPriceRequestDTO;
