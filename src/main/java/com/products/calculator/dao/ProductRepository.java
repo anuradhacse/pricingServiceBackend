@@ -1,6 +1,6 @@
 package com.products.calculator.dao;
 
-import com.products.calculator.common.exeception.ProductServiceException;
+import com.products.calculator.common.exeception.ProductNotFoundException;
 import com.products.calculator.entity.Product;
 import org.springframework.stereotype.Repository;
 
@@ -21,7 +21,7 @@ public class ProductRepository {
         if(product.isPresent()){
             return product.get();
         }
-        throw new ProductServiceException("Cannot find the product with the given ID - " + productId);
+        throw new ProductNotFoundException("Cannot find the product with the given ID - " + productId);
     }
 
     public List<Product> getAllProducts(){
