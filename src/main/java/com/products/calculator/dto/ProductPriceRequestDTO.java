@@ -45,4 +45,13 @@ public class ProductPriceRequestDTO implements Serializable {
     public void setQuantityType(QuantityType quantityType) {
         this.quantityType = quantityType;
     }
+
+    @Override
+    public String toString() {
+        return "ProductPriceRequestDTO{" +
+                "productId='" + productId + '\'' +
+                ", quantity=" + quantity +
+                ", quantityType=" + quantityType +
+                '}';
+    }
 }
