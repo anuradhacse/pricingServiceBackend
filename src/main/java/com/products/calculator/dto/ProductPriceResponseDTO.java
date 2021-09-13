@@ -1,5 +1,8 @@
 package com.products.calculator.dto;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -45,6 +48,22 @@ public class ProductPriceResponseDTO implements Serializable {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ProductPriceResponseDTO that = (ProductPriceResponseDTO) o;
+
+        return new EqualsBuilder().append(units, that.units).append(productId, that.productId).append(name, that.name).append(price, that.price).isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).append(productId).append(name).append(units).append(price).toHashCode();
     }
 
     @Override

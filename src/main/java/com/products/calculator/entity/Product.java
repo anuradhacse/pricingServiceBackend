@@ -1,7 +1,13 @@
 package com.products.calculator.entity;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.math.BigDecimal;
 
+/**
+ * Represent a product Entity
+ */
 public class Product {
 
     private String id;
@@ -46,5 +52,31 @@ public class Product {
 
     public void setCartonPrice(BigDecimal cartonPrice) {
         this.cartonPrice = cartonPrice;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+
+        return new EqualsBuilder().append(unitsPerCarton, product.unitsPerCarton).append(id, product.id).append(name, product.name).append(cartonPrice, product.cartonPrice).isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).append(id).append(name).append(unitsPerCarton).append(cartonPrice).toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", unitsPerCarton=" + unitsPerCarton +
+                ", cartonPrice=" + cartonPrice +
+                '}';
     }
 }

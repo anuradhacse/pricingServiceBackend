@@ -1,6 +1,8 @@
 package com.products.calculator.dto;
 
 import com.products.calculator.common.enumeration.QuantityType;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -44,6 +46,22 @@ public class ProductPriceRequestDTO implements Serializable {
 
     public void setQuantityType(QuantityType quantityType) {
         this.quantityType = quantityType;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ProductPriceRequestDTO that = (ProductPriceRequestDTO) o;
+
+        return new EqualsBuilder().append(productId, that.productId).append(quantity, that.quantity).append(quantityType, that.quantityType).isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).append(productId).append(quantity).append(quantityType).toHashCode();
     }
 
     @Override
