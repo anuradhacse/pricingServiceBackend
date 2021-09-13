@@ -21,7 +21,7 @@ public class ProductPricingController {
     @Autowired
     private ProductPricingService productPricingService;
 
-    @PostMapping("/calculate")
+    @PostMapping(value = "/calculate", consumes = "application/json")
     public ProductPriceResponseDTO calculateByUnits(@Valid @RequestBody ProductPriceRequestDTO request){
         log.info("Request received to calculate price for : product {}, quantity {}, quantityType {}",
                 request.getProductId(), request.getQuantity(), request.getQuantityType());
