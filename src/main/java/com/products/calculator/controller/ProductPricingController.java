@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(path ="/products/pricing", produces = "application/json", consumes = "application/json")
+@RequestMapping(path ="/products/pricing", produces = "application/json")
 @CrossOrigin(origins="*")
 public class ProductPricingController {
 

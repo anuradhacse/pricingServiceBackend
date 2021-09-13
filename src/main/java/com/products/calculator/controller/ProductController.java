@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/products", produces = "application/json", consumes = "application/json")
+@RequestMapping(path = "/products", produces = "application/json")
 @CrossOrigin(origins="*")
 public class ProductController {
 
